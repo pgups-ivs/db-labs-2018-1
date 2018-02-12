@@ -30,10 +30,21 @@
 
 ![Restored db](files/restored_db.png)
 
+Расположение файлов на диске описано в системной таблице pg_relation_filepath, пример выборки есть в документации Postgres в параграфе [Determining Disk Usage](https://www.postgresql.org/docs/10/static/disk-usage.html):
+
+SELECT pg_relation_filepath(c.oid), n.nspname, c.relname, c.relpages, c.relkind FROM pg_class c JOIN pg_namespace n ON c.relnamespace = n.oid WHERE n.nspname = 'public'
+
+
+? Вопрос: что обозначают символы в столбце relkind? Почему у некоторых записей в столбце path нет значения?
+
+
 
 # Схема базы данных
 ![Схема данных](http://www.postgresqltutorial.com/wp-content/uploads/2013/05/PostgreSQL-Sample-Database.png)
 
 
 # Что читать
-В первую очередь стоит просмотреть обучающий раздел на сайте Postgresql.org ( [Tutorial](http://www.postgresql.org/docs/9.4/static/tutorial.html) ) и первые уроки на [postresqltutorial.com](http://www.postgresqltutorial.com). Также можно скачать электронные книги с диска F: или из чата.
+В первую очередь стоит просмотреть обучающий раздел на сайте Postgresql.org ( [Tutorial](http://www.postgresql.org/docs/10/static/tutorial.html) ) и первые уроки на [postresqltutorial.com](http://www.postgresqltutorial.com). Также можно скачать электронные книги с диска F: или из чата.
+
+Рекомендованный online-курс: [Погружение в СУБД (2017)](https://stepik.org/course/3203/syllabus) на Stepik.
+
