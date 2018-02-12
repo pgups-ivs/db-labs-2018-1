@@ -60,7 +60,31 @@ ORDER BY relpages DESC
 > :grey_question: что возвращают функции pg_total_relation_size и pg_relation_size?
 
 
-# Схема базы данных
-![Схема данных](http://www.postgresqltutorial.com/wp-content/uploads/2013/05/PostgreSQL-Sample-Database.png)
+![Диаграмма базы данных](http://www.postgresqltutorial.com/wp-content/uploads/2013/05/PostgreSQL-Sample-Database.png)
 
+# Схемы в базе данных
+
+Загруженная база данных доступна в __схеме__ `public` (это используемая по умолчанию область имен для объектов, создаваемых пользователями postgres, см. параграф [Schemas](https://www.postgresql.org/docs/10/static/ddl-schemas.html)). 
+
+> :grey_question: как настраивается имя схемы, используемой по умолчанию?
+
+Помимо неё, в базе данных обязательно присутствует системная схема, содержащая информацию о возможностях сервера и о данных, хранящихся в базе. О содержимом системной схемы можно прочитать в главе справки [Information schema](https://www.postgresql.org/docs/10/static/information-schema.html). 
+
+Примеры запросов, получающих информацию о поддерживаемых сервером возможностях SQL:
+```sql
+select * from information_schema.sql_parts
+select * from information_schema.sql_features WHERE is_supported = 'YES'
+select * from information_schema.sql_sizing
+select * from information_schema.sql_implementation_info
+```
+> :grey_question: какова максимальная длина названия столбца таблицы в PostgreSQL? есть ли ограничение на количество столбцов в одной таблице?
+
+В информационной схеме доступны описания таблиц, столбцов и прочих объектов базы данных. Например, можно получить список столбцов всех таблиц базы данных:
+```sql
+SELECT *
+FROM information_schema.columns
+WHERE table_schema = 'public'
+```
+
+> :grey_question: что хранится в представлении table_privileges? в каком представлении описаны параметры функций и процедур?
 
