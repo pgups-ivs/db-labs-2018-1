@@ -16,11 +16,16 @@
 22.05.2017 | 29.05.2017 | Защита выполненных работ. 
 
 
+# Что читать
+В первую очередь стоит просмотреть обучающий раздел на сайте Postgresql.org ( [Tutorial](http://www.postgresql.org/docs/10/static/tutorial.html) ) и первые уроки на [postresqltutorial.com](http://www.postgresqltutorial.com). Также можно скачать электронные книги с shared диска в компьютерных классах.
+
+Рекомендованный online-курс: [Погружение в СУБД (2017)](https://stepik.org/course/3203/syllabus) на Stepik.
+
 # Начало работы
 Для выполнения работ необходимо [скачать](https://www.postgresql.org/download/) и установить сервер СУБД PostgreSQL. Для Windows рекомендуется дистрибутив [EnterpriseDB](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
 
-Работы этого семестра будут использовать в качестве примера БД с сайта http://postgresqltutorial.com/, которая была, в свою очередь, портирована из проекта Sakila для MySQL (http://dev.mysql.com/doc/sakila/en/). После установки сервера нужно скачать и импортировать образ базы данных:
-[dvdrental.zip](files/dvdrental.zip) или http://www.postgresqltutorial.com/postgresql-sample-database/
+Работы этого семестра будут использовать в качестве примера БД с сайта http://postgresqltutorial.com/. После установки сервера нужно скачать и импортировать образ базы данных:
+в этом репозитории [dvdrental.zip](files/dvdrental.zip) или http://www.postgresqltutorial.com/postgresql-sample-database/
 
 В zip-архив упакована резервная копия базы данных в формате tar. Инструкция по восстановлению БД с помощью утилит командной строки - в документации, [25.1 backup-dump](https://www.postgresql.org/docs/10/static/backup-dump.html#BACKUP-DUMP-RESTORE).
 
@@ -36,15 +41,26 @@ FROM pg_class c JOIN pg_namespace n ON c.relnamespace = n.oid
 WHERE n.nspname = 'public'
 ```
 
-> :grey_question: Вопрос: что обозначают символы в столбце relkind? Почему у некоторых записей в столбце path нет значения?
+> :grey_question: что обозначают символы в столбце relkind? Почему у некоторых записей в столбце path нет значения?
+
+
+В столбце relpages указано количество страниц данных, записанных в соответствующий файл. Размер файла в байтах можно получить функцией `pg_total_relation_size`, а потом перевести его в более легкочитаемый вид функцией `pg_size_pretty`:
+
+```sql
+SELECT n.nspname || '.' || c.relname, c.relpages, 
+  pg_size_pretty( pg_total_relation_size(c.oid) ) as "total",
+  pg_size_pretty( pg_table_size(c.oid) ) as "table only",
+  pg_size_pretty( pg_indexes_size(c.oid) ) as "indexes size",
+  pg_size_pretty( pg_relation_size(c.oid) ) as "main size"
+FROM pg_class c JOIN pg_namespace n ON c.relnamespace = n.oid 
+WHERE n.nspname = 'public' AND c.relkind = 'r'
+ORDER BY relpages DESC
+```
+
+> :grey_question: что возвращают функции pg_total_relation_size и pg_relation_size?
 
 
 # Схема базы данных
 ![Схема данных](http://www.postgresqltutorial.com/wp-content/uploads/2013/05/PostgreSQL-Sample-Database.png)
 
-
-# Что читать
-В первую очередь стоит просмотреть обучающий раздел на сайте Postgresql.org ( [Tutorial](http://www.postgresql.org/docs/10/static/tutorial.html) ) и первые уроки на [postresqltutorial.com](http://www.postgresqltutorial.com). Также можно скачать электронные книги с диска F: или из чата.
-
-Рекомендованный online-курс: [Погружение в СУБД (2017)](https://stepik.org/course/3203/syllabus) на Stepik.
 
