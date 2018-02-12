@@ -33,7 +33,11 @@
 
 ![Restored db](files/restored_db.png)
 
-Расположение файлов на диске можно узнать с помощью функции `pg_relation_filepath`, пример выборки есть в документации Postgres в параграфе [Determining Disk Usage](https://www.postgresql.org/docs/10/static/disk-usage.html):
+Логическая модель загруженной базы данных:
+
+![Диаграмма базы данных](http://www.postgresqltutorial.com/wp-content/uploads/2013/05/PostgreSQL-Sample-Database.png)
+
+Расположение соответствующих таблицам файлов на диске можно узнать с помощью функции `pg_relation_filepath`. Пример выборки есть в документации Postgres в параграфе [Determining Disk Usage](https://www.postgresql.org/docs/10/static/disk-usage.html):
 
 ```sql
 SELECT pg_relation_filepath(c.oid), n.nspname, c.relname, c.relpages, c.relkind 
@@ -58,9 +62,6 @@ ORDER BY relpages DESC
 ```
 
 > :grey_question: что возвращают функции pg_total_relation_size и pg_relation_size?
-
-
-![Диаграмма базы данных](http://www.postgresqltutorial.com/wp-content/uploads/2013/05/PostgreSQL-Sample-Database.png)
 
 # Схемы в базе данных
 
