@@ -1,8 +1,6 @@
 Лабораторные работы по курсу "Базы данных", часть 1
 ================================
 
-Работы этого семестра будут использовать в качестве примера БД с сайта http://postgresqltutorial.com/, которая была, в свою очередь, портирована из проекта Sakila для MySQL (http://dev.mysql.com/doc/sakila/en/).
-
 # Расписание
 Занятия в этом семестре будут в каждой из двух групп проходить один раз в две недели, начиная с 13 февраля:
 
@@ -19,9 +17,9 @@
 
 
 # Начало работы
-Для выполнения работ необходимо [скачать](https://www.postgresql.org/download/) и установить сервер СУБД. Для Windows рекомендуется дистрибутив [EnterpriseDB](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
+Для выполнения работ необходимо [скачать](https://www.postgresql.org/download/) и установить сервер СУБД PostgreSQL. Для Windows рекомендуется дистрибутив [EnterpriseDB](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
 
-После установки сервера нужно скачать и импортировать образ базы данных:
+Работы этого семестра будут использовать в качестве примера БД с сайта http://postgresqltutorial.com/, которая была, в свою очередь, портирована из проекта Sakila для MySQL (http://dev.mysql.com/doc/sakila/en/). После установки сервера нужно скачать и импортировать образ базы данных:
 [dvdrental.zip](files/dvdrental.zip) или http://www.postgresqltutorial.com/postgresql-sample-database/
 
 В zip-архив упакована резервная копия базы данных в формате tar. Инструкция по восстановлению БД с помощью утилит командной строки - в документации, [25.1 backup-dump](https://www.postgresql.org/docs/10/static/backup-dump.html#BACKUP-DUMP-RESTORE).
@@ -30,13 +28,15 @@
 
 ![Restored db](files/restored_db.png)
 
-Расположение файлов на диске описано в системной таблице pg_relation_filepath, пример выборки есть в документации Postgres в параграфе [Determining Disk Usage](https://www.postgresql.org/docs/10/static/disk-usage.html):
+Расположение файлов на диске можно узнать с помощью функции `pg_relation_filepath`, пример выборки есть в документации Postgres в параграфе [Determining Disk Usage](https://www.postgresql.org/docs/10/static/disk-usage.html):
 
-SELECT pg_relation_filepath(c.oid), n.nspname, c.relname, c.relpages, c.relkind FROM pg_class c JOIN pg_namespace n ON c.relnamespace = n.oid WHERE n.nspname = 'public'
+```sql
+SELECT pg_relation_filepath(c.oid), n.nspname, c.relname, c.relpages, c.relkind 
+FROM pg_class c JOIN pg_namespace n ON c.relnamespace = n.oid 
+WHERE n.nspname = 'public'
+```
 
-
-? Вопрос: что обозначают символы в столбце relkind? Почему у некоторых записей в столбце path нет значения?
-
+> :grey_question: Вопрос: что обозначают символы в столбце relkind? Почему у некоторых записей в столбце path нет значения?
 
 
 # Схема базы данных
