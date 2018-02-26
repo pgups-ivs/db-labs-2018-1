@@ -89,3 +89,24 @@ WHERE table_schema = 'public'
 
 > :grey_question: что хранится в представлении table_privileges? в каком представлении описаны параметры функций и процедур?
 
+
+# Разработка схем данных
+Следующая тема для изучения - средства описания схем данных, операторы DDL - Data Definition Language. В документации Postgres есть соотвествующая глава - [Data Definition](http://www.postgresql.org/docs/10/static/ddl.html), на сайте PGT - серия уроков, начиная с [Create Table](http://www.postgresqltutorial.com/postgresql-create-table/). 
+
+Изучаемые параграфы:
+* Создание таблиц - операция [CREATE TABLE](http://www.postgresql.org/docs/10/static/sql-createtable.html)
+* [Типы данных](http://www.postgresql.org/docs/10/static/datatype.html)
+* [Типы ограничений](http://www.postgresql.org/docs/10/static/ddl-constraints.html)
+* Создание [индексов](http://www.postgresql.org/docs/10/static/indexes.html)
+* Создание [представлений](http://www.postgresql.org/docs/10/static/rules-views.html) и [схем](http://www.postgresql.org/docs/10/static/ddl-schemas.html)
+* Изменение таблиц - операция [ALTER TABLE](http://www.postgresql.org/docs/10/static/ddl-alter.html)
+
+> :grey_question: В учебной схеме следует разобрать скрипты создания таблиц и представлений, после чего доработать их так, чтобы появились следующие возможности:
+  * Указать роль, которую исполнил актер в конкретном фильме
+  * Описывать группу, создававшую фильм (режиссеры, сценаристы, операторы итд)
+  * Сохранять описания фильмов и биографии актеров на нескольких языках
+  * Указывать дату выхода фильма в прокат в разных странах
+  * Сохранять в описании фильма бинарные файлы (афиши, кадры, видео-файлы)
+  * Указать дату, к которой фильм должен быть возвращен из проката, в дополнение к фактической дате возврата
+  * Перечислить языки озвучивания для доступной к прокату копии фильма
+
