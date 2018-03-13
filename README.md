@@ -110,3 +110,52 @@ WHERE table_schema = 'public'
   * Указать дату, к которой фильм должен быть возвращен из проката, в дополнение к фактической дате возврата
   * Перечислить языки озвучивания для доступной к прокату копии фильма
 
+# Выборка данных: оператор Select
+[Полный синтаксис оператора Select](http://www.postgresql.org/docs/current/static/sql-select.html)
+
+Изучение оператора Select разделено на два занятия:
+
+1. Базовая структура оператора select (выборки данных из одной таблицы)
+  * Однострочные функции
+    * [агрегатные функции](http://www.postgresql.org/docs/current/static/functions-aggregate.html) (COUNT, SUM, AVG, MAX, MIN)
+    * использование [строковых](http://www.postgresql.org/docs/current/static/functions-string.html), [числовых](http://www.postgresql.org/docs/current/static/functions-math.html) и функций для работы с [датами](http://www.postgresql.org/docs/current/static/functions-datetime.html)
+    * функции [преобразования типов данных](http://www.postgresql.org/docs/current/static/functions-formatting.html)
+    * условные выражения: [CASE и COALESCE](http://www.postgresql.org/docs/current/static/functions-conditional.html)
+    * [операторы сравнения строк](http://www.postgresql.org/docs/current/static/functions-matching.html): LIKE, SIMILAR TO и регулярные выражения
+  * [Группировка данных](http://www.postgresql.org/docs/current/static/queries-table-expressions.html#QUERIES-GROUP)
+    * группировка данных с помощью фразы GROUP BY
+    * исключение итоговых строк при помощи фразы HAVING
+  * Сортировка данных - фраза [ORDER BY](http://www.postgresql.org/docs/current/static/queries-order.html)
+  * Ограничение размера результата выборки - фразы [LIMIT и OFFSET](http://www.postgresql.org/docs/current/static/queries-limit.html)
+2. Выборка данных из нескольких таблиц
+  * [соединения таблиц](http://www.postgresql.org/docs/current/static/queries-table-expressions.html#QUERIES-FROM)
+    * декартово произведение - CROSS JOIN
+    * внутренее соединение - INNER JOIN
+      * эквисоединение - условия ON и USING
+      * естественное соединение - условие NATURAL
+    * внешние соединения (LEFT [OUTER] JOIN, RIGHT [OUTER] JOIN, FULL [OUTER] JOIN)
+    * соединение более двух таблиц
+    * соединение таблицы с собой
+  * объединение запросов
+    * [операторы UNION, INTERSECT, EXCEPT](http://www.postgresql.org/docs/current/static/queries-union.html)
+  * Подзапросы
+    * подзапросы в фразах FROM и HAVING
+    * коррелированные подзапросы
+    * использование операторов [EXISTS, ANY, SOME, ALL, IN, NOT IN](http://www.postgresql.org/docs/current/static/functions-subquery.html)
+
+> :grey_question В учебной схеме составьте SQL-запросы, возвращающие:
+  * Названия фильмов с их категориями
+  * Количество фильмов в каждой категории в порядке убывания количества фильмов
+  * Количество фильмов для каждого из возрастных рейтингов
+  * Количество фильмов, для которых нет трейлеров
+  * Общее количество копий фильмов в каждом из магазинов
+  * Количество копий каждого из фильмов в каждом магазине
+  * Количество зарегистрированных в каждом из магазинов клиентов
+  * email клиентов с указанием количества взятых напрокат фильмов и суммы
+  * Какие 10 фильмов брали в прокат больше всего раз?
+  * Какие 10 фильмов брали в прокат чаще остальных за последние 3 месяца?
+  * В каком из фильмов снималось наибольшее число актеров?
+  * Три самые популярные категории фильмов за последние 2 месяца
+  * Сумма выручки по каждому из магазинов за последний месяц
+  * Сумма выручки по всем магазинам за каждый из месяцев прошлого года
+  * Сумма выручки в каждый из дней последних трех недель
