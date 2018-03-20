@@ -120,7 +120,7 @@ WHERE table_schema = 'public'
     * [агрегатные функции](http://www.postgresql.org/docs/current/static/functions-aggregate.html) (COUNT, SUM, AVG, MAX, MIN)
     * использование [строковых](http://www.postgresql.org/docs/current/static/functions-string.html), [числовых](http://www.postgresql.org/docs/current/static/functions-math.html) и функций для работы с [датами](http://www.postgresql.org/docs/current/static/functions-datetime.html)
     * функции [преобразования типов данных](http://www.postgresql.org/docs/current/static/functions-formatting.html)
-    * условные выражения: [CASE и COALESCE](http://www.postgresql.org/docs/current/static/functions-conditional.html)
+    * условные выражения: [CASE, COALESCE и NULLIF](http://www.postgresql.org/docs/current/static/functions-conditional.html)
     * [операторы сравнения строк](http://www.postgresql.org/docs/current/static/functions-matching.html): LIKE, SIMILAR TO и регулярные выражения
   * [Группировка данных](http://www.postgresql.org/docs/current/static/queries-table-expressions.html#QUERIES-GROUP)
     * группировка данных с помощью фразы GROUP BY
@@ -143,7 +143,7 @@ WHERE table_schema = 'public'
     * коррелированные подзапросы
     * использование операторов [EXISTS, ANY, SOME, ALL, IN, NOT IN](http://www.postgresql.org/docs/current/static/functions-subquery.html)
 
-> :grey_question В учебной схеме составьте SQL-запросы, возвращающие:
+> :grey_question: В учебной схеме составьте SQL-запросы, возвращающие:
   * Названия фильмов с их категориями
   * Количество фильмов в каждой категории в порядке убывания количества фильмов
   * Количество фильмов для каждого из возрастных рейтингов
