@@ -21,6 +21,8 @@
 
 Рекомендованный online-курс: [Погружение в СУБД (2017)](https://stepik.org/course/3203/syllabus) на Stepik.
 
+! Upd: Дополнительно рекомендую учебник и примеры баз данных от [EDU.PostgresPro.ru](https://edu.postgrespro.ru/)
+
 # Начало работы
 Для выполнения работ необходимо [скачать](https://www.postgresql.org/download/) и установить сервер СУБД PostgreSQL. Для Windows рекомендуется дистрибутив [EnterpriseDB](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
 
